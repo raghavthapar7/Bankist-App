@@ -30,6 +30,7 @@ body {
 
 .header {
   padding: 1.6rem 3.2rem;
+  margin-bottom: 6.4rem;
 }
 
 .navbar {
@@ -38,7 +39,7 @@ body {
 
 .greeting {
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .logo {
@@ -62,4 +63,28 @@ body {
   width: 3.2rem;
   border: none;
   cursor: pointer;
+}
+
+.bank-details {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.balance-info {
+  justify-content: space-between;
+  margin-bottom: 3.2rem;
+}
+
+.heading {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.date-time {
+  color: #868e96;
+  font-size: 1.2rem;
+}
+
+.balance {
+  font-size: 4.8rem;
 }
