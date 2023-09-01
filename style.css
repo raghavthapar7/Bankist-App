@@ -59,13 +59,14 @@ body {
   text-align: center;
 }
 
-.btn-login {
-  height: 3.2rem;
-  width: 3.2rem;
+.btn {
+  background: none;
+  font-size: 2.2rem;
+  height: inherit;
   border: none;
   cursor: pointer;
+  transition: all 100ms ease;
 }
-
 /* BANK DETAILS SECTION */
 
 .bank-details {
@@ -74,9 +75,9 @@ body {
 
   /* Code for grid */
   display: grid;
-  grid-template-rows: auto repeat(3, 1fr) auto;
+  grid-template-rows: auto repeat(3, 15rem) auto;
   grid-template-columns: 1fr auto;
-  gap: 3.2rem;
+  gap: 2.4rem;
 }
 
 .balance-info {
@@ -106,34 +107,42 @@ body {
 /* -------------------------------------------- */
 
 .transaction-action {
-  grid-row: 2 / span 3;
   /* 
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: repeat(3, 1fr); 
   */
+  overflow-y: scroll;
+  grid-row: 2 / span 3;
+  /* border-radius: 2rem; */
 }
 
 /* TRANSACTIONS MOVEMENTS*/
 /* ---------------------- */
 
 .overflow-div {
+  height: 100%;
   background-color: #fff;
   border-radius: 2rem;
-  overflow-y: scroll;
+  /* overflow: hidden; */
   /* grid-column: 2; */
 }
 
 .overflow-div::-webkit-scrollbar {
   display: none;
 }
+
+.transaction-action::-webkit-scrollbar {
+  display: none;
+}
+
 .transactions {
   background-color: #fff;
   border-radius: 2rem;
 }
 
 .transaction-item {
-  padding: 2.4rem 4.8rem;
+  padding: 1.6rem 4.8rem;
   justify-content: space-between;
   border-bottom: 0.2rem solid #f1f1f1;
 }
@@ -181,11 +190,111 @@ body {
 }
 
 .transaction--amount {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 /* ---------------------- */
 
+/* ACTIONS */
+/* ---------------------- */
+
 .action {
   grid-column: 2/3;
+  background-color: #868e96;
+  padding: 3.2rem 4rem;
+  border-radius: 2rem;
+  width: 100%;
+}
+
+.action--transfer {
+  background-image: linear-gradient(
+    to left top,
+    #f59f00,
+    #f8ac12,
+    #fbba20,
+    #fdc72e,
+    #ffd43b
+  );
+}
+
+.action-heading {
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(2, 2.5fr) 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.4rem 1rem;
+}
+
+.action--input {
+  text-align: center;
+  grid-row: 1;
+}
+
+.label {
+  font-size: 1.2rem;
+  /* font-weight: 500; */
+  justify-self: center;
+}
+
+.input--box {
+  grid-row: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 14rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.8rem;
+  border: none;
+}
+
+.btn-action {
+  grid-row: 1;
+  grid-column: 3;
+  background-color: #fff;
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  padding: 0.2rem 0.8rem;
+  cursor: pointer;
+  border: none;
+}
+
+.action--loan {
+  background-image: linear-gradient(
+    to left top,
+    #2b8a3e,
+    #3b9e4d,
+    #4ab25c,
+    #5ac66c,
+    #69db7c
+  );
+}
+
+.action--loan .input-container {
+  grid-template-columns: 2.5fr 1fr 2.5fr;
+}
+
+.action--loan .label {
+  grid-row: 2;
+}
+
+.action--loan .btn-action {
+  grid-column: 2/3;
+}
+
+.action--close {
+  background-image: linear-gradient(
+    to left top,
+    #c92a2a,
+    #d84441,
+    #e65b58,
+    #f37170,
+    #ff8787
+  );
+}
+
+.btn-action:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }
