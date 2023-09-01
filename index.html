@@ -36,7 +36,7 @@
     </header>
 
     <section class="bank-details">
-      <header class="balance-info flex">
+      <header class="balance-info">
         <div class="date-info">
           <p class="heading">Current Balance</p>
           <p class="date-time">As of 31/08/2023, 17:55</p>
@@ -69,7 +69,7 @@
 
             <div class="transaction-item flex">
               <div class="transaction--details flex">
-                <p class="transaction--type type-debit">Debit</p>
+                <p class="transaction--type type-credit">Credit</p>
                 <p class="transaction--date">31/08/2023</p>
               </div>
               <p class="transaction--amount">
@@ -89,7 +89,7 @@
 
             <div class="transaction-item flex">
               <div class="transaction--details flex">
-                <p class="transaction--type type-debit">Debit</p>
+                <p class="transaction--type type-credit">Credit</p>
                 <p class="transaction--date">31/08/2023</p>
               </div>
               <p class="transaction--amount">
@@ -100,6 +100,16 @@
             <div class="transaction-item flex">
               <div class="transaction--details flex">
                 <p class="transaction--type type-debit">Debit</p>
+                <p class="transaction--date">31/08/2023</p>
+              </div>
+              <p class="transaction--amount">
+                ₹ <span class="amount">1300</span>
+              </p>
+            </div>
+
+            <div class="transaction-item flex">
+              <div class="transaction--details flex">
+                <p class="transaction--type type-credit">Credit</p>
                 <p class="transaction--date">31/08/2023</p>
               </div>
               <p class="transaction--amount">
@@ -118,10 +128,22 @@
             </div>
           </div>
         </div>
-        <div class="action action-transfer">Transfer</div>
-        <div class="action action-loan">Loan</div>
-        <div class="action action-close">Close</div>
       </section>
+
+      <!-- Action Sections for Transfer, loan and close account -->
+      <section class="action">
+        <div class="action--transfer">Transfer</div>
+      </section>
+      <section class="action">
+        <div class="action--loan">Loan</div>
+      </section>
+      <section class="action">
+        <div class="action--close">Close</div>
+      </section>
+
+      <!-- Section for all the statistics that includes ins, outs and interest calculated -->
+      <section class="stats">Stats</section>
+      <section class="time">Time</section>
     </section>
 
     <!-- Javascript File -->
