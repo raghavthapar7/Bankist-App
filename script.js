@@ -68,3 +68,30 @@ let outAmount = document.querySelector(".out-amt");
 let interestAmount = document.querySelector(".int-amt");
 let sortBtn = document.querySelector(".sort");
 let timeLeft = document.querySelector(".time-left");
+
+// DISPLAYING TRANSACTION - USING .insertAdjacentHTML()
+
+const displayTransactions = function (transactions) {
+  // Here, the existing transactions that are hard-coded in the HTML are removed
+  transactionContainer.innerHTML = "";
+
+  // Iterating transactions to show them
+  transactions.forEach((transaction) => {
+    const transactionType = transaction > 0 ? `credit` : `debit`;
+
+    const html = `
+      <div class="transaction-item flex">
+          <div class="transaction--details flex">
+              <p class="transaction--type type-${transactionType}">${transactionType}</p>
+              <p class="transaction--date">31/08/2023</p>
+          </div>
+          <p class="transaction--amount">
+              ₹ <span class="amount">${transaction}</span>
+          </p>
+      </div>
+      `;
+    transactionContainer.insertAdjacentHTML("afterbegin", html);
+  });
+};
+
+displayTransactions(account1.movements);
