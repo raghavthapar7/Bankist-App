@@ -14,8 +14,12 @@
         <img src="logo.png" alt="company logo" class="logo" />
 
         <div class="credentials flex">
-          <input type="text" placeholder="USER" class="input-area" />
-          <input type="password" placeholder="PIN" class="input-area" />
+          <input type="text" placeholder="USER" class="input-area username" />
+          <input
+            type="password"
+            placeholder="PIN"
+            class="input-area password"
+          />
           <button class="btn btn-login">→</button>
         </div>
       </nav>
@@ -25,7 +29,11 @@
       <header class="balance-info">
         <div class="date-info">
           <p class="heading">Current Balance</p>
-          <p class="date-time">As of 31/08/2023, 17:55</p>
+          <p class="date-time">
+            As of
+            <span class="current-date">31/08/2023</span>,
+            <span class="current-time">17:55</span>
+          </p>
         </div>
         <p class="balance">₹20000</p>
       </header>
@@ -60,35 +68,35 @@
       <section class="action action--transfer">
         <p class="action-heading">Transfer Money</p>
         <div class="input-container">
-          <input type="text" class="input--box" />
+          <input type="text" class="input--box transfer-user" />
           <p class="label">Transfer to</p>
 
-          <input type="text" class="input--box" />
+          <input type="text" class="input--box transfer-amt" />
           <p class="label">Amount</p>
 
-          <button class="btn btn-action">→</button>
+          <button class="btn btn-action btn-transfer">→</button>
         </div>
       </section>
 
       <section class="action action--loan">
         <p class="action-heading">Loan</p>
         <div class="input-container">
-          <input type="text" class="input--box" />
+          <input type="text" class="input--box loan-amt" />
           <p class="label">Amount</p>
-          <button class="btn btn-action">→</button>
+          <button class="btn btn-action btn-loan">→</button>
         </div>
       </section>
 
       <section class="action action--close">
         <p class="action-heading">Close Account</p>
         <div class="input-container">
-          <input type="text" class="input--box" />
+          <input type="text" class="input--box close-user" />
           <p class="label">Confirm User</p>
 
-          <input type="text" class="input--box" />
+          <input type="text" class="input--box close-pin" />
           <p class="label">Confirm PIN</p>
 
-          <button class="btn btn-action">→</button>
+          <button class="btn btn-action btn-close">→</button>
         </div>
       </section>
 
