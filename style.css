@@ -128,18 +128,23 @@ body {
   /* grid-column: 2; */
 }
 
-.overflow-div::-webkit-scrollbar {
+/* .overflow-div::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .transaction-action::-webkit-scrollbar {
   display: none;
 }
 
-.transactions {
+.transaction-action {
   background-color: #fff;
   border-radius: 2rem;
 }
+
+/* .transactions {
+  background-color: #fff;
+  border-radius: 2rem;
+} */
 
 .transaction-item {
   padding: 1.6rem 4.8rem;
