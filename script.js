@@ -138,3 +138,32 @@ displayBalance(account1.movements);
 
 // ==============================================================================
 // ==============================================================================
+
+// CALCULATING STATS OF THE USER USING CHAINING METHODS
+
+const displayStats = function (transactions) {
+  // Calculating the total IN Amount
+  const totalIn = transactions
+    .filter((transaction) => transaction > 0)
+    .reduce((acc, transaction) => acc + transaction);
+
+  // Calculating the total Out Amount
+  const totalOut = transactions
+    .filter((transaction) => transaction < 0)
+    .map((transaction) => transaction * -1)
+    .reduce((acc, transaction) => acc + transaction);
+
+  // Calculating Interest
+  const interest = transactions
+    .filter((transaction) => transaction > 0)
+    .map((deposit) => (deposit * 1.2) / 100) // Taking 1.2% as hard-coded. Will be dynamic once implementing login functionality
+    .filter((interest) => interest >= 1)
+    .reduce((acc, interest) => acc + interest);
+
+  // Displaying the contents calculated
+  inAmount = inAmount.textContent = `₹${totalIn}`;
+  outAmount = outAmount.textContent = `₹${totalOut}`;
+  interestAmount = interestAmount.textContent = `₹${interest}`;
+};
+
+displayStats(account1.movements);
