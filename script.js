@@ -1,5 +1,8 @@
 "use strict";
 
+// ============================================================================== //
+// ============================================================================== //
+
 // USER DATA
 const account1 = {
   owner: "Anisha Thapar",
@@ -31,6 +34,9 @@ const account4 = {
 
 // ARRAY OF ACCOUNTS
 const accounts = [account1, account2, account3, account4];
+
+// ============================================================================== //
+// ============================================================================== //
 
 // ELEMENTS TO BE MANIPULATED
 
@@ -69,7 +75,10 @@ let interestAmount = document.querySelector(".int-amt");
 let sortBtn = document.querySelector(".sort");
 let timeLeft = document.querySelector(".time-left");
 
-// DISPLAYING TRANSACTION - USING .insertAdjacentHTML()
+// ============================================================================== //
+// ============================================================================== //
+
+// DISPLAYING TRANSACTIONS - USING .insertAdjacentHTML()
 
 const displayTransactions = function (transactions) {
   // Here, the existing transactions that are hard-coded in the HTML are removed
@@ -86,7 +95,7 @@ const displayTransactions = function (transactions) {
               <p class="transaction--date">31/08/2023</p>
           </div>
           <p class="transaction--amount">
-              ₹ <span class="amount">${transaction}</span>
+          ₹ <span class="amount">${transaction}</span>
           </p>
       </div>
       `;
@@ -95,3 +104,22 @@ const displayTransactions = function (transactions) {
 };
 
 displayTransactions(account1.movements);
+
+// ==============================================================================
+// ==============================================================================
+
+// MAKING USERNAMES
+const createUserNames = function (accounts) {
+  accounts.forEach((acc) => {
+    return (acc.username = acc.owner
+      .toLowerCase() // turns into lower case
+      .split(" ") // splits the name
+      .map((name) => name[0]) // takes out the first letter
+      .join("")); // joins the number of letters togethter
+  });
+};
+
+createUserNames(accounts);
+
+// ==============================================================================
+// ==============================================================================
