@@ -123,3 +123,18 @@ createUserNames(accounts);
 
 // ==============================================================================
 // ==============================================================================
+
+// CALCULATING BALANCE FOR THE USER
+
+const displayBalance = function (transactions) {
+  const totalBalance = transactions.reduce((acc, ele) => {
+    return acc + ele;
+  });
+
+  balance.textContent = `₹${totalBalance}`;
+};
+
+displayBalance(account1.movements);
+
+// ==============================================================================
+// ==============================================================================
