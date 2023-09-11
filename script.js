@@ -188,6 +188,9 @@ loginBtn.addEventListener("click", function (e) {
     // Actually displaying stuff
     bankDetails.style.opacity = 100;
 
+    greeting.textContent = `Welcome Back, ${
+      currentAccount.owner.split(" ")[0]
+    }`;
     displayTransactions(currentAccount);
     displayStats(currentAccount);
     displayBalance(currentAccount);
