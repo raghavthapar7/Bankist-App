@@ -80,7 +80,10 @@ let timeLeft = document.querySelector(".time-left");
 
 // DISPLAYING TRANSACTIONS - USING .insertAdjacentHTML()
 
-const displayTransactions = function (transactions) {
+const displayTransactions = function (account) {
+  // Assigning the transaction based on the current account
+  let transactions = account.movements;
+
   // Here, the existing transactions that are hard-coded in the HTML are removed
   transactionContainer.innerHTML = "";
 
@@ -103,8 +106,6 @@ const displayTransactions = function (transactions) {
   });
 };
 
-displayTransactions(account1.movements);
-
 // ==============================================================================
 // ==============================================================================
 
@@ -126,7 +127,10 @@ createUserNames(accounts);
 
 // CALCULATING BALANCE FOR THE USER
 
-const displayBalance = function (transactions) {
+const displayBalance = function (account) {
+  // Assigning the transaction based on the current account
+  let transactions = account.movements;
+
   const totalBalance = transactions.reduce((acc, ele) => {
     return acc + ele;
   });
@@ -134,36 +138,62 @@ const displayBalance = function (transactions) {
   balance.textContent = `₹${totalBalance}`;
 };
 
-displayBalance(account1.movements);
-
 // ==============================================================================
 // ==============================================================================
 
 // CALCULATING STATS OF THE USER USING CHAINING METHODS
 
-const displayStats = function (transactions) {
+const displayStats = function (account) {
+  // Assigning the transaction based on the current account
+  let transactions = account.movements;
+
   // Calculating the total IN Amount
   const totalIn = transactions
     .filter((transaction) => transaction > 0)
-    .reduce((acc, transaction) => acc + transaction);
+    .reduce((acc, transaction) => acc + transaction, 0);
 
   // Calculating the total Out Amount
   const totalOut = transactions
     .filter((transaction) => transaction < 0)
     .map((transaction) => transaction * -1)
-    .reduce((acc, transaction) => acc + transaction);
+    .reduce((acc, transaction) => acc + transaction, 0);
 
   // Calculating Interest
   const interest = transactions
     .filter((transaction) => transaction > 0)
     .map((deposit) => (deposit * 1.2) / 100) // Taking 1.2% as hard-coded. Will be dynamic once implementing login functionality
     .filter((interest) => interest >= 1)
-    .reduce((acc, interest) => acc + interest);
+    .reduce((acc, interest) => acc + interest, 0);
 
   // Displaying the contents calculated
-  inAmount = inAmount.textContent = `₹${totalIn}`;
-  outAmount = outAmount.textContent = `₹${totalOut}`;
-  interestAmount = interestAmount.textContent = `₹${interest}`;
+  inAmount.textContent = `₹${totalIn}`;
+  outAmount.textContent = `₹${totalOut}`;
+  interestAmount.textContent = `₹${interest}`;
 };
 
-displayStats(account1.movements);
+// ==============================================================================
+// ==============================================================================
+
+// IMPLEMENTING LOGIN FUNCTIONALITY
+
+loginBtn.addEventListener("click", function (e) {
+  // Prevents the page from reloading again
+  e.preventDefault();
+
+  let currentAccount = accounts.find((acc) => acc.username === username.value);
+  // Getting the account using the username entered in the form
+
+  if (currentAccount?.pin === Number(password.value)) {
+    displayTransactions(currentAccount);
+    displayStats(currentAccount);
+    displayBalance(currentAccount);
+  }
+
+  // The focus is not on the input anymore
+  username.blur();
+  password.blur();
+
+  // Clearing the fields of the input areas
+  username.value = "";
+  password.value = "";
+});
