@@ -78,6 +78,9 @@ body {
   grid-template-rows: auto repeat(3, 15rem) auto;
   grid-template-columns: 1fr auto;
   gap: 2.4rem;
+  opacity: 0;
+
+  transition: 1s all;
 }
 
 .balance-info {

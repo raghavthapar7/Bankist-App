@@ -55,6 +55,7 @@ let transactionContainer = document.querySelector(".transactions");
 let transactionType = document.querySelector(".transaction--type");
 let transactionDate = document.querySelector(".transaction--date");
 let transactionAmount = document.querySelector(".amount");
+let bankDetails = document.querySelector(".bank-details");
 
 // Action elements
 let transferUser = document.querySelector(".transfer-user");
@@ -180,10 +181,13 @@ loginBtn.addEventListener("click", function (e) {
   // Prevents the page from reloading again
   e.preventDefault();
 
-  let currentAccount = accounts.find((acc) => acc.username === username.value);
   // Getting the account using the username entered in the form
+  let currentAccount = accounts.find((acc) => acc.username === username.value);
 
   if (currentAccount?.pin === Number(password.value)) {
+    // Actually displaying stuff
+    bankDetails.style.opacity = 100;
+
     displayTransactions(currentAccount);
     displayStats(currentAccount);
     displayBalance(currentAccount);
@@ -196,4 +200,7 @@ loginBtn.addEventListener("click", function (e) {
   // Clearing the fields of the input areas
   username.value = "";
   password.value = "";
+
+  // Actually displaying stuff
+  bankDetails.style.opacity = 100;
 });
