@@ -76,6 +76,9 @@ let interestAmount = document.querySelector(".int-amt");
 let sortBtn = document.querySelector(".sort");
 let timeLeft = document.querySelector(".time-left");
 
+// Variables
+let currentAccount = "";
+let totalBalance = 0;
 // ============================================================================== //
 // ============================================================================== //
 
@@ -132,7 +135,7 @@ const displayBalance = function (account) {
   // Assigning the transaction based on the current account
   let transactions = account.movements;
 
-  const totalBalance = transactions.reduce((acc, ele) => {
+  totalBalance = transactions.reduce((acc, ele) => {
     return acc + ele;
   });
 
@@ -175,6 +178,17 @@ const displayStats = function (account) {
 // ==============================================================================
 // ==============================================================================
 
+// REFRESHING DISPLAY
+
+let refreshDisplay = function (currentAccount) {
+  displayBalance(currentAccount);
+  displayTransactions(currentAccount);
+  displayStats(currentAccount);
+};
+
+// ==============================================================================
+// ==============================================================================
+
 // IMPLEMENTING LOGIN FUNCTIONALITY
 
 loginBtn.addEventListener("click", function (e) {
@@ -182,7 +196,7 @@ loginBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
   // Getting the account using the username entered in the form
-  let currentAccount = accounts.find((acc) => acc.username === username.value);
+  currentAccount = accounts.find((acc) => acc.username === username.value);
 
   if (currentAccount?.pin === Number(password.value)) {
     // Actually displaying stuff
@@ -191,9 +205,8 @@ loginBtn.addEventListener("click", function (e) {
     greeting.textContent = `Welcome Back, ${
       currentAccount.owner.split(" ")[0]
     }`;
-    displayTransactions(currentAccount);
-    displayStats(currentAccount);
-    displayBalance(currentAccount);
+
+    refreshDisplay(currentAccount);
   }
 
   // The focus is not on the input anymore
@@ -206,4 +219,36 @@ loginBtn.addEventListener("click", function (e) {
 
   // Actually displaying stuff
   bankDetails.style.opacity = 100;
+});
+
+// ==============================================================================
+// ==============================================================================
+
+// TRANSFER FUNCTIONALITY
+transferBtn.addEventListener("click", function () {
+  let recieverAccount = accounts.find(
+    (acc) => acc.username === transferUser.value
+  );
+
+  // console.log(recieverAccount?.interestRate);
+  let transferAmountValue = transferAmount.value;
+
+  if (
+    recieverAccount &&
+    recieverAccount?.username !== currentAccount.username &&
+    totalBalance > 0 &&
+    totalBalance > transferAmountValue &&
+    transferAmountValue > 0
+  ) {
+    console.log(recieverAccount);
+    currentAccount.movements.push(-transferAmountValue);
+    totalBalance -= transferAmount.value;
+    recieverAccount.movements.push(Number(transferAmountValue));
+    refreshDisplay(currentAccount);
+  }
+
+  transferAmount.blur();
+  transferUser.blur();
+  transferUser.value = "";
+  transferAmount.value = "";
 });
