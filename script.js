@@ -198,7 +198,7 @@ loginBtn.addEventListener("click", function (e) {
   // Getting the account using the username entered in the form
   currentAccount = accounts.find((acc) => acc.username === username.value);
 
-  if (currentAccount?.pin === Number(password.value)) {
+  if (currentAccount && currentAccount?.pin === Number(password.value)) {
     // Actually displaying stuff
     bankDetails.style.opacity = 100;
 
@@ -216,16 +216,14 @@ loginBtn.addEventListener("click", function (e) {
   // Clearing the fields of the input areas
   username.value = "";
   password.value = "";
-
-  // Actually displaying stuff
-  bankDetails.style.opacity = 100;
 });
 
 // ==============================================================================
 // ==============================================================================
 
 // TRANSFER FUNCTIONALITY
-transferBtn.addEventListener("click", function () {
+transferBtn.addEventListener("click", function (e) {
+  e.preventDefault();
   let recieverAccount = accounts.find(
     (acc) => acc.username === transferUser.value
   );
@@ -240,7 +238,7 @@ transferBtn.addEventListener("click", function () {
     totalBalance > transferAmountValue &&
     transferAmountValue > 0
   ) {
-    console.log(recieverAccount);
+    // console.log(recieverAccount);
     currentAccount.movements.push(-transferAmountValue);
     totalBalance -= transferAmount.value;
     recieverAccount.movements.push(Number(transferAmountValue));
@@ -251,4 +249,33 @@ transferBtn.addEventListener("click", function () {
   transferUser.blur();
   transferUser.value = "";
   transferAmount.value = "";
+});
+
+// ==============================================================================
+// ==============================================================================
+
+// THE CLOSE ACCOUNT FUNCTIONALITY USING THE FIND INDEX METHOD
+
+// closeUser
+// closePin
+// closeBtn
+closeBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  let userToBeClosed = accounts.find((acc) => acc.username === closeUser.value);
+  let userToBeClosedPin = closePin.value;
+
+  if (
+    userToBeClosed &&
+    userToBeClosed.username === currentAccount.username &&
+    userToBeClosedPin == currentAccount.pin
+  ) {
+    const indexDelete = accounts.findIndex(
+      (acc) => acc.username === userToBeClosed.username
+    );
+
+    accounts.splice(indexDelete, 1);
+    currentAccount = null;
+    bankDetails.style.opacity = 0;
+  }
 });
