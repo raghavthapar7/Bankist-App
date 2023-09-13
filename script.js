@@ -256,9 +256,6 @@ transferBtn.addEventListener("click", function (e) {
 
 // THE CLOSE ACCOUNT FUNCTIONALITY USING THE FIND INDEX METHOD
 
-// closeUser
-// closePin
-// closeBtn
 closeBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -280,3 +277,30 @@ closeBtn.addEventListener("click", function (e) {
     greeting.textContent = "Log in to get started";
   }
 });
+// ==============================================================================
+// ==============================================================================
+
+// LOAN FUNCTIONALITY USING THE SOME METHOD
+
+loanBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // The loan can only be approved if the user has a deposit of
+  // at least 10% of the requested amount
+
+  const loanValue = Number(loanAmount.value);
+
+  if (
+    loanValue > 0 &&
+    currentAccount.movements.some((mov) => mov >= loanValue * 0.1)
+  ) {
+    currentAccount.movements.push(loanValue);
+    refreshDisplay(currentAccount);
+  }
+
+  loanAmount.value = "";
+  loanAmount.blur();
+});
+
+// ==============================================================================
+// ==============================================================================
