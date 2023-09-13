@@ -277,5 +277,6 @@ closeBtn.addEventListener("click", function (e) {
     accounts.splice(indexDelete, 1);
     currentAccount = null;
     bankDetails.style.opacity = 0;
+    greeting.textContent = "Log in to get started";
   }
 });
